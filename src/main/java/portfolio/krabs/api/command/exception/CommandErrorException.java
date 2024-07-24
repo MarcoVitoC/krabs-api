@@ -2,7 +2,9 @@ package portfolio.krabs.api.command.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import portfolio.krabs.api.model.constant.Errors;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -17,7 +19,7 @@ public class CommandErrorException extends RuntimeException {
     this.error = error;
   }
   
-  public static CommandErrorException withError(HttpStatus httpStatus, Map<String, String> error) {
-    return new CommandErrorException(httpStatus, error);
+  public static CommandErrorException withError(HttpStatus httpStatus, Errors error) {
+    return new CommandErrorException(httpStatus, Map.of(error.getErrorKey(), error.getErrorMessage()));
   }
 }

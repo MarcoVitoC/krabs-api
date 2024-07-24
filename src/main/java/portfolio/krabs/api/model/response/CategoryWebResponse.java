@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import portfolio.krabs.api.entity.Expense;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +24,6 @@ public class CategoryWebResponse {
   
   private Date updatedTime;
   
-  private List<Expense> expenses;
+  private List<ExpenseWebResponse> expenses;
   
 }

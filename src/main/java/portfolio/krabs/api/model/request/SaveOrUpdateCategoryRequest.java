@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaveCategoryRequest {
+public class SaveOrUpdateCategoryRequest {
+  
+  private String id;
   
   private String icon;
   
