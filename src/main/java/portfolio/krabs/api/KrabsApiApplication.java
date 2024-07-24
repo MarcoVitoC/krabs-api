@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class KrabsApiApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Hello World, This is Krabs App!");
 		SpringApplication.run(KrabsApiApplication.class, args);
 	}
 
