@@ -1,14 +1,7 @@
 package portfolio.krabs.api.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import portfolio.krabs.api.command.category.DeleteCategoryCommand;
 import portfolio.krabs.api.command.category.GetAllCategoriesCommand;
 import portfolio.krabs.api.command.category.GetCategoryByIdCommand;
@@ -28,6 +21,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/categories")
+@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
 public class CategoryController {
   
   private final CommandExecutor commandExecutor;
