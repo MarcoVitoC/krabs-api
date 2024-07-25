@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaveExpenseRequest {
+public class SaveOrUpdateExpenseRequest {
+  
+  private String id;
   
   private String categoryId;
   

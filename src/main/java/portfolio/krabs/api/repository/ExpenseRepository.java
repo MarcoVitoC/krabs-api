@@ -1,7 +1,15 @@
 package portfolio.krabs.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import portfolio.krabs.api.entity.Expense;
 
+import java.util.List;
+
 public interface ExpenseRepository extends JpaRepository<Expense, String> {
+  
+  @Query("SELECT E FROM Expense E"
+    + " WHERE MONTH(E.createdTime) = :month")
+  List<Expense> findAllByMonth(int month);
+  
 }

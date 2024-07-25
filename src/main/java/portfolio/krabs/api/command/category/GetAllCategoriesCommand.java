@@ -6,5 +6,5 @@ import portfolio.krabs.api.model.response.CategoryWebResponse;
 
 import java.util.List;
 
-public interface GetAllCategoryCommand extends Command<EmptyRequest, List<CategoryWebResponse>> {
+public interface GetAllCategoriesCommand extends Command<EmptyRequest, List<CategoryWebResponse>> {
 }

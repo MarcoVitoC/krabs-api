@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import portfolio.krabs.api.command.category.GetAllCategoryCommand;
+import portfolio.krabs.api.command.category.GetAllCategoriesCommand;
 import portfolio.krabs.api.helper.CategoryHelper;
 import portfolio.krabs.api.model.request.EmptyRequest;
 import portfolio.krabs.api.model.response.CategoryWebResponse;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Component
 @AllArgsConstructor
-public class GetAllCategoryCommandImpl implements GetAllCategoryCommand {
+public class GetAllCategoriesCommandImpl implements GetAllCategoriesCommand {
   
   @Autowired
   private CategoryRepository categoryRepository;

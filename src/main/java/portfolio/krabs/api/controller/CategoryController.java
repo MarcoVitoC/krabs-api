@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import portfolio.krabs.api.command.category.DeleteCategoryCommand;
-import portfolio.krabs.api.command.category.GetAllCategoryCommand;
+import portfolio.krabs.api.command.category.GetAllCategoriesCommand;
 import portfolio.krabs.api.command.category.GetCategoryByIdCommand;
 import portfolio.krabs.api.command.category.SaveCategoryCommand;
 import portfolio.krabs.api.command.category.UpdateCategoryCommand;
@@ -41,7 +41,7 @@ public class CategoryController {
   
   @GetMapping
   public Mono<Response<List<CategoryWebResponse>>> get(EmptyRequest request) {
-    return ControllerUtil.doExecute(GetAllCategoryCommand.class, request, commandExecutor, scheduler);
+    return ControllerUtil.doExecute(GetAllCategoriesCommand.class, request, commandExecutor, scheduler);
   }
   
   @GetMapping("/{id}")

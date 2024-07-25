@@ -17,7 +17,7 @@ public class ExpenseWebResponse {
   
   private String userId;
   
-  private String categoryId;
+  private CategoryWebResponse category;
   
   private String description;
   
