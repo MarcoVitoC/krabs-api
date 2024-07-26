@@ -11,6 +11,7 @@ import portfolio.krabs.api.repository.CategoryRepository;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Component
@@ -35,7 +36,7 @@ public class UpdateCategoryCommandImpl implements UpdateCategoryCommand {
     Category category = categoryHelper.findCategoryById(request.getId());
     category.setIcon(request.getIcon());
     category.setName(request.getName());
-    category.setUpdatedTime(Date.from(Instant.now()));
+    category.setUpdatedTime(LocalDate.now());
     
     return category;
   }

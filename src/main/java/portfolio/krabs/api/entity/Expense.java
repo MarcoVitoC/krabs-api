@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -39,12 +40,12 @@ public class Expense {
   private String paymentMethod;
   
   @Column(name = "CREATED_TIME")
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date createdTime;
+  @Temporal(TemporalType.DATE)
+  private LocalDate createdTime;
   
   @Column(name = "UPDATED_TIME")
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date updatedTime;
+  @Temporal(TemporalType.DATE)
+  private LocalDate updatedTime;
   
   @ManyToOne
   @JoinColumn(name = "CATEGORY_ID")

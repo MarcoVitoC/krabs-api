@@ -13,4 +13,6 @@ public class GetAllExpensesRequest {
   
   private int month;
   
+  private int year;
+  
 }

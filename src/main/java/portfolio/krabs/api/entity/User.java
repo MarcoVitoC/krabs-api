@@ -13,6 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -39,12 +40,12 @@ public class User {
   private String password;
   
   @Column(name = "CREATED_TIME")
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date createdTime;
+  @Temporal(TemporalType.DATE)
+  private LocalDate createdTime;
   
   @Column(name = "UPDATED_TIME")
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date updatedTime;
+  @Temporal(TemporalType.DATE)
+  private LocalDate updatedTime;
   
   @OneToMany(mappedBy = "user")
   private List<Expense> expenses;
