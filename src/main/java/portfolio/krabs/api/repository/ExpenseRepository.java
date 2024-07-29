@@ -9,7 +9,8 @@ import java.util.List;
 public interface ExpenseRepository extends JpaRepository<Expense, String> {
   
   @Query("SELECT E FROM Expense E"
-    + " WHERE MONTH(E.createdTime) = :month AND YEAR(E.createdTime) = :year")
+    + " WHERE MONTH(E.createdTime) = :month AND YEAR(E.createdTime) = :year"
+    + " ORDER BY E.createdTime DESC")
   List<Expense> findAllByMonthAndYear(int month, int year);
   
 }
