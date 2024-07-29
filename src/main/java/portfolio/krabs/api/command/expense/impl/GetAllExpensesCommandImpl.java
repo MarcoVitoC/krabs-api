@@ -38,7 +38,7 @@ public class GetAllExpensesCommandImpl implements GetAllExpensesCommand {
     for (LocalDate date = firstDay; date.isBefore(lastDay); date = date.plusDays(1)) {
       LocalDate currentDate = date;
       List<ExpenseWebResponse> dailyExpenses = expenses.stream()
-        .filter(expense -> expense.getCreatedTime().isEqual(currentDate))
+        .filter(expense -> expense.getCreatedTime().toLocalDate().isEqual(currentDate))
         .map(expenseHelper::parseToWebResponse)
         .toList();
       

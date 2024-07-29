@@ -10,9 +10,7 @@ import portfolio.krabs.api.model.request.SaveOrUpdateExpenseRequest;
 import portfolio.krabs.api.repository.ExpenseRepository;
 import reactor.core.publisher.Mono;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Component
 @AllArgsConstructor
@@ -37,7 +35,7 @@ public class SaveExpenseCommandImpl implements SaveExpenseCommand {
       .description(request.getDescription())
       .amount(request.getAmount())
       .paymentMethod(request.getPaymentMethod())
-      .createdTime(LocalDate.now())
+      .createdTime(LocalDateTime.now())
       .category(categoryHelper.findCategoryById(request.getCategoryId()))
       .user(null)
       .build();

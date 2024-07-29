@@ -11,9 +11,7 @@ import portfolio.krabs.api.model.request.SaveOrUpdateExpenseRequest;
 import portfolio.krabs.api.repository.ExpenseRepository;
 import reactor.core.publisher.Mono;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Component
 @AllArgsConstructor
@@ -42,7 +40,7 @@ public class UpdateExpenseCommandImpl implements UpdateExpenseCommand {
     expense.setDescription(request.getDescription());
     expense.setAmount(request.getAmount());
     expense.setPaymentMethod(request.getPaymentMethod());
-    expense.setUpdatedTime(LocalDate.now());
+    expense.setUpdatedTime(LocalDateTime.now());
     expense.setCategory(categoryHelper.findCategoryById(request.getCategoryId()));
     
     return expense;

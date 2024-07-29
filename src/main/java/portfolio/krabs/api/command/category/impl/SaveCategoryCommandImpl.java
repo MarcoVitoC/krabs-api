@@ -9,9 +9,7 @@ import portfolio.krabs.api.model.request.SaveOrUpdateCategoryRequest;
 import portfolio.krabs.api.repository.CategoryRepository;
 import reactor.core.publisher.Mono;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Component
 @AllArgsConstructor
@@ -32,7 +30,7 @@ public class SaveCategoryCommandImpl implements SaveCategoryCommand {
     return Category.builder()
       .icon(request.getIcon())
       .name(request.getName())
-      .createdTime(LocalDate.now())
+      .createdTime(LocalDateTime.now())
       .build();
   }
 }
