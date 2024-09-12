@@ -1,7 +1,6 @@
 package portfolio.krabs.api.command.category.impl;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import portfolio.krabs.api.command.category.UpdateCategoryCommand;
 import portfolio.krabs.api.entity.Category;
@@ -16,10 +15,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UpdateCategoryCommandImpl implements UpdateCategoryCommand {
   
-  @Autowired
   private CategoryHelper categoryHelper;
   
-  @Autowired
   private CategoryRepository categoryRepository;
   
   @Override

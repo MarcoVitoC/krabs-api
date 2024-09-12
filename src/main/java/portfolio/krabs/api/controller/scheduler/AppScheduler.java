@@ -7,7 +7,7 @@ import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 
 @Configuration
-public class AppSchedulerConfig {
+public class AppScheduler {
   
   @Bean
   public Scheduler scheduler() {

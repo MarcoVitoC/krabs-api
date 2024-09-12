@@ -1,7 +1,6 @@
 package portfolio.krabs.api.command.category.impl;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import portfolio.krabs.api.command.category.SaveCategoryCommand;
 import portfolio.krabs.api.entity.Category;
@@ -15,7 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SaveCategoryCommandImpl implements SaveCategoryCommand {
   
-  @Autowired
   private CategoryRepository categoryRepository;
   
   @Override

@@ -1,7 +1,6 @@
 package portfolio.krabs.api.command.expense.impl;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import portfolio.krabs.api.command.expense.GetExpenseByIdCommand;
 import portfolio.krabs.api.helper.ExpenseHelper;
@@ -12,8 +11,7 @@ import reactor.core.publisher.Mono;
 @AllArgsConstructor
 public class GetExpenseByIdCommandImpl implements GetExpenseByIdCommand {
   
-  @Autowired
-  private ExpenseHelper expenseHelper;
+  private final ExpenseHelper expenseHelper;
   
   @Override
   public Mono<ExpenseWebResponse> execute(String id) {

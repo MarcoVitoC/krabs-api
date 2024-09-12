@@ -2,7 +2,6 @@ package portfolio.krabs.api.command.category.impl;
 
 import lombok.AllArgsConstructor;
 import org.hibernate.Hibernate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import portfolio.krabs.api.command.category.GetAllCategoriesCommand;
 import portfolio.krabs.api.helper.CategoryHelper;
@@ -18,17 +17,16 @@ import java.util.Optional;
 @AllArgsConstructor
 public class GetAllCategoriesCommandImpl implements GetAllCategoriesCommand {
   
-  @Autowired
   private CategoryRepository categoryRepository;
   
-  @Autowired
   private CategoryHelper categoryHelper;
   
   @Override
   public Mono<List<CategoryWebResponse>> execute(EmptyRequest request) {
     return Mono.just(categoryRepository.findAll()
       .stream()
-      .peek(category -> Optional.ofNullable(category.getExpenses()).ifPresent(Hibernate::initialize))
+      .peek(category -> Optional.ofNullable(category.getExpenses())
+        .ifPresent(Hibernate::initialize))
       .map(categoryHelper::parseToWebResponse)
       .toList()
     );

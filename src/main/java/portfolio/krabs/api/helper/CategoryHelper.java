@@ -1,5 +1,6 @@
 package portfolio.krabs.api.helper;
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryHelper {
   
-  @Autowired
-  private CategoryRepository categoryRepository;
+  private final CategoryRepository categoryRepository;
   
-  @Autowired
-  private ExpenseRepository expenseRepository;
+  private final ExpenseRepository expenseRepository;
   
   @Transactional(readOnly = true)
   public Category findCategoryById(String id) {

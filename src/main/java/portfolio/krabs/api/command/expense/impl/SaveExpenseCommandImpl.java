@@ -1,7 +1,6 @@
 package portfolio.krabs.api.command.expense.impl;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import portfolio.krabs.api.command.expense.SaveExpenseCommand;
 import portfolio.krabs.api.entity.Expense;
@@ -16,11 +15,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SaveExpenseCommandImpl implements SaveExpenseCommand {
   
-  @Autowired
-  private CategoryHelper categoryHelper;
+  private final CategoryHelper categoryHelper;
   
-  @Autowired
-  private ExpenseRepository expenseRepository;
+  private final ExpenseRepository expenseRepository;
   
   @Override
   public Mono<Boolean> execute(SaveOrUpdateExpenseRequest request) {

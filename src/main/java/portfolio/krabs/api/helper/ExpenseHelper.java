@@ -1,5 +1,6 @@
 package portfolio.krabs.api.helper;
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ import portfolio.krabs.api.repository.ExpenseRepository;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ExpenseHelper {
   
-  @Autowired
-  private ExpenseRepository expenseRepository;
+  private final ExpenseRepository expenseRepository;
   
   @Transactional(readOnly = true)
   public Expense findExpenseById(String id) {
