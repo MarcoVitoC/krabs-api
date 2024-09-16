@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum Errors {
   
   CATEGORY_NOT_FOUND("CATEGORY_NOT_FOUND", "Category not found!"),
-  EXPENSE_NOT_FOUND("EXPENSE_NOT_FOUND", "Expense not found!");
+  EXPENSE_NOT_FOUND("EXPENSE_NOT_FOUND", "Expense not found!"),
+  USERNAME_ALREADY_EXIST("USERNAME_ALREADY_EXIST", "Username already exist!");
   
   private final String errorKey;
   

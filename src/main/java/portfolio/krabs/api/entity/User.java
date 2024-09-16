@@ -29,13 +29,10 @@ public class User {
   @Column(name = "ID", length = 36)
   private String id;
   
-  @Column(name = "USERNAME", length = 50)
+  @Column(name = "USERNAME")
   private String username;
   
-  @Column(name = "EMAIL", length = 50)
-  private String email;
-  
-  @Column(name = "PASSWORD", length = 50)
+  @Column(name = "PASSWORD")
   private String password;
   
   @Column(name = "CREATED_TIME")
