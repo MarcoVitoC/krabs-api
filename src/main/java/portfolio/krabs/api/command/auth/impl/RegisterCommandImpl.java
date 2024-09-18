@@ -14,6 +14,7 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -33,8 +34,7 @@ public class RegisterCommandImpl implements RegisterCommand {
   }
   
   private Boolean isNewUser(String username) {
-    User user = userRepository.findByUsername(username);
-    if (Objects.nonNull(user)) {
+    if (userRepository.findByUsername(username).isPresent()) {
       throw CommandErrorException.withError(HttpStatus.CONFLICT, Errors.USERNAME_ALREADY_EXIST);
     }
     
