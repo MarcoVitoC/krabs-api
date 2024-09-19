@@ -11,7 +11,11 @@ public enum Errors {
   
   USERNAME_ALREADY_EXIST("USERNAME_ALREADY_EXIST", "Username already exist!"),
   
-  INVALID_CREDENTIALS("INVALID_CREDENTIALS", "Invalid credentials!");
+  INVALID_CREDENTIALS("INVALID_CREDENTIALS", "Please input the correct username or password!"),
+  
+  UNAUTHORIZED_ACCESS("UNAUTHORIZED", "Please login or register to gain access!"),
+  
+  FORBIDDEN_ACCESS("FORBIDDEN_ACCESS", "Sorry, You are not allowed to access this resource.");
   
   private final String errorKey;
   
