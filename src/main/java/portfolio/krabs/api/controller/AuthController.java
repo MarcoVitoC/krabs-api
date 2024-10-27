@@ -2,10 +2,12 @@ package portfolio.krabs.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import portfolio.krabs.api.command.auth.GetUsernameCommand;
 import portfolio.krabs.api.command.auth.LoginCommand;
 import portfolio.krabs.api.command.auth.RegisterCommand;
 import portfolio.krabs.api.command.executor.CommandExecutor;
@@ -14,6 +16,8 @@ import portfolio.krabs.api.model.request.AuthRequest;
 import portfolio.krabs.api.model.response.Response;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
+
+import java.security.Principal;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,5 +37,10 @@ public class AuthController {
   @PostMapping(value = "/login")
   public Mono<Response<String>> login(@RequestBody AuthRequest request) {
     return ControllerUtil.doExecute(LoginCommand.class, request, commandExecutor, scheduler);
+  }
+  
+  @GetMapping(value = "/username")
+  public Mono<Response<String>> getUsername(Principal principal) {
+    return ControllerUtil.doExecute(GetUsernameCommand.class, principal, commandExecutor, scheduler);
   }
 }

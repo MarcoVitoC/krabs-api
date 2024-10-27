@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SaveOrUpdateExpenseRequest {
   
+  private String username;
+  
   private String id;
   
   private String categoryId;
