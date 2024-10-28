@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GetAllExpensesRequest {
   
+  private String username;
+  
   private int month;
   
   private int year;

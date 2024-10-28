@@ -44,9 +44,13 @@ public class ExpenseController {
   }
   
   @GetMapping
-  public Mono<Response<Map<LocalDate, List<ExpenseWebResponse>>>> get(@RequestParam int month, @RequestParam int year) {
+  public Mono<Response<Map<LocalDate, List<ExpenseWebResponse>>>> get(
+    @RequestHeader String username,
+    @RequestParam int month,
+    @RequestParam int year) {
     return ControllerUtil.doExecute(GetAllExpensesCommandImpl.class,
       GetAllExpensesRequest.builder()
+        .username(username)
         .month(month)
         .year(year)
         .build(),

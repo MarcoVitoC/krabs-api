@@ -15,6 +15,7 @@ import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Component
 @AllArgsConstructor
@@ -35,6 +36,7 @@ public class GetAllExpensesCommandImpl implements GetAllExpensesCommand {
     for (LocalDate date = firstDay; date.isBefore(lastDay); date = date.plusDays(1)) {
       LocalDate currentDate = date;
       List<ExpenseWebResponse> dailyExpenses = expenses.stream()
+        .filter(expense -> Objects.equals(expense.getUser().getUsername(), request.getUsername()))
         .filter(expense -> expense.getCreatedTime().toLocalDate().isEqual(currentDate))
         .map(expenseHelper::parseToWebResponse)
         .toList();
