@@ -6,6 +6,7 @@ import portfolio.krabs.api.command.expense.UpdateExpenseCommand;
 import portfolio.krabs.api.entity.Expense;
 import portfolio.krabs.api.helper.CategoryHelper;
 import portfolio.krabs.api.helper.ExpenseHelper;
+import portfolio.krabs.api.model.form.SaveOrUpdateExpenseForm;
 import portfolio.krabs.api.model.request.SaveOrUpdateExpenseRequest;
 import portfolio.krabs.api.repository.ExpenseRepository;
 import reactor.core.publisher.Mono;
@@ -25,19 +26,19 @@ public class UpdateExpenseCommandImpl implements UpdateExpenseCommand {
   @Override
   public Mono<Boolean> execute(SaveOrUpdateExpenseRequest request) {
     return Mono.fromSupplier(() -> request)
-      .map(this::updateExpense)
+      .map(req -> updateExpense(req.getId(), req.getSaveOrUpdateExpenseForm()))
       .map(expenseRepository::save)
       .thenReturn(Boolean.TRUE);
   }
   
-  private Expense updateExpense(SaveOrUpdateExpenseRequest request) {
-    Expense expense = expenseHelper.findExpenseById(request.getId());
+  private Expense updateExpense(String id, SaveOrUpdateExpenseForm form) {
+    Expense expense = expenseHelper.findExpenseById(id);
     
-    expense.setDescription(request.getDescription());
-    expense.setAmount(request.getAmount());
-    expense.setPaymentMethod(request.getPaymentMethod());
+    expense.setDescription(form.getDescription());
+    expense.setAmount(form.getAmount());
+    expense.setPaymentMethod(form.getPaymentMethod());
     expense.setUpdatedTime(LocalDateTime.now());
-    expense.setCategory(categoryHelper.findCategoryById(request.getCategoryId()));
+    expense.setCategory(categoryHelper.findCategoryById(form.getCategoryId()));
     
     return expense;
   }

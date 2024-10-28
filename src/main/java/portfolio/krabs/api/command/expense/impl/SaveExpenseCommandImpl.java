@@ -6,6 +6,7 @@ import portfolio.krabs.api.command.expense.SaveExpenseCommand;
 import portfolio.krabs.api.entity.Expense;
 import portfolio.krabs.api.entity.User;
 import portfolio.krabs.api.helper.CategoryHelper;
+import portfolio.krabs.api.model.form.SaveOrUpdateExpenseForm;
 import portfolio.krabs.api.model.request.SaveOrUpdateExpenseRequest;
 import portfolio.krabs.api.repository.ExpenseRepository;
 import portfolio.krabs.api.repository.UserRepository;
@@ -26,19 +27,19 @@ public class SaveExpenseCommandImpl implements SaveExpenseCommand {
   @Override
   public Mono<Boolean> execute(SaveOrUpdateExpenseRequest request) {
     return Mono.fromSupplier(() -> request)
-      .map(this::parseToEntity)
+      .map(req -> parseToEntity(req.getUsername(), req.getSaveOrUpdateExpenseForm()))
       .map(expenseRepository::save)
       .thenReturn(Boolean.TRUE);
   }
   
-  private Expense parseToEntity(SaveOrUpdateExpenseRequest request) {
+  private Expense parseToEntity(String username, SaveOrUpdateExpenseForm form) {
     return Expense.builder()
-      .description(request.getDescription())
-      .amount(request.getAmount())
-      .paymentMethod(request.getPaymentMethod())
+      .description(form.getDescription())
+      .amount(form.getAmount())
+      .paymentMethod(form.getPaymentMethod())
       .createdTime(LocalDateTime.now())
-      .category(categoryHelper.findCategoryById(request.getCategoryId()))
-      .user(getUser(request.getUsername()))
+      .category(categoryHelper.findCategoryById(form.getCategoryId()))
+      .user(getUser(username))
       .build();
   }
   

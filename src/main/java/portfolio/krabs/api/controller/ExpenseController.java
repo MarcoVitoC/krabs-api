@@ -1,16 +1,7 @@
 package portfolio.krabs.api.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import portfolio.krabs.api.command.executor.CommandExecutor;
 import portfolio.krabs.api.command.expense.DeleteExpenseCommand;
 import portfolio.krabs.api.command.expense.GetExpenseByIdCommand;
@@ -18,6 +9,7 @@ import portfolio.krabs.api.command.expense.SaveExpenseCommand;
 import portfolio.krabs.api.command.expense.UpdateExpenseCommand;
 import portfolio.krabs.api.command.expense.impl.GetAllExpensesCommandImpl;
 import portfolio.krabs.api.controller.util.ControllerUtil;
+import portfolio.krabs.api.model.form.SaveOrUpdateExpenseForm;
 import portfolio.krabs.api.model.request.GetAllExpensesRequest;
 import portfolio.krabs.api.model.request.SaveOrUpdateExpenseRequest;
 import portfolio.krabs.api.model.response.ExpenseWebResponse;
@@ -40,8 +32,15 @@ public class ExpenseController {
   private final Scheduler scheduler;
   
   @PostMapping
-  public Mono<Response<Boolean>> save(@RequestBody SaveOrUpdateExpenseRequest request) {
-    return ControllerUtil.doExecute(SaveExpenseCommand.class, request, commandExecutor, scheduler);
+  public Mono<Response<Boolean>> save(@RequestHeader String username, @RequestBody SaveOrUpdateExpenseForm form) {
+    return ControllerUtil.doExecute(SaveExpenseCommand.class,
+      SaveOrUpdateExpenseRequest.builder()
+        .username(username)
+        .saveOrUpdateExpenseForm(form)
+        .build(),
+      commandExecutor,
+      scheduler
+    );
   }
   
   @GetMapping
@@ -62,14 +61,11 @@ public class ExpenseController {
   }
   
   @PutMapping("/{id}")
-  public Mono<Response<Boolean>> update(@PathVariable String id, @RequestBody SaveOrUpdateExpenseRequest request) {
+  public Mono<Response<Boolean>> update(@PathVariable String id, @RequestBody SaveOrUpdateExpenseForm form) {
     return ControllerUtil.doExecute(UpdateExpenseCommand.class,
       SaveOrUpdateExpenseRequest.builder()
         .id(id)
-        .description(request.getDescription())
-        .amount(request.getAmount())
-        .paymentMethod(request.getPaymentMethod())
-        .categoryId(request.getCategoryId())
+        .saveOrUpdateExpenseForm(form)
         .build(),
       commandExecutor,
       scheduler

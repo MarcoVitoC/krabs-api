@@ -41,7 +41,7 @@ public class AuthConfig {
       .csrf(AbstractHttpConfigurer::disable)
       .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .authorizeHttpRequests(authorize -> authorize
-        .requestMatchers("/api/auth/*").permitAll()
+        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
         .anyRequest().authenticated())
       .oauth2ResourceServer(oAuth2 -> oAuth2.jwt(Customizer.withDefaults()))
       .build();

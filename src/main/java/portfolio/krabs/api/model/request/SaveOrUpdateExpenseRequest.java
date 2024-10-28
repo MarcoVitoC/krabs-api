@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import portfolio.krabs.api.model.form.SaveOrUpdateExpenseForm;
 
 @Data
 @Builder
@@ -11,16 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SaveOrUpdateExpenseRequest {
   
-  private String username;
-  
   private String id;
   
-  private String categoryId;
+  private String username;
   
-  private String description;
-  
-  private Long amount;
-  
-  private String paymentMethod;
+  private SaveOrUpdateExpenseForm saveOrUpdateExpenseForm;
   
 }
